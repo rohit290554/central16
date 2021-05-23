@@ -1,4 +1,4 @@
-from flask import Flask, jsonify, request, render_template
+from flask import Flask, jsonify, request, render_template, redirect
 import mysql.connector as mysql
 
 app = Flask(__name__)
@@ -34,4 +34,4 @@ def login():
         cur.execute(''' INSERT INTO test(name, mob) VALUES(%s,%s)''', (name, mob))
         engine.commit()
         cur.close()
-        return f"Done!!"
+        return f"Submitted Successfully"
