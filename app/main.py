@@ -1,5 +1,5 @@
-from flask import Flask, jsonify, request, render_template, redirect
 import mysql.connector as mysql
+from flask import Flask, jsonify, request, render_template
 
 app = Flask(__name__)
 HOST = 'sql6.freesqldatabase.com'
@@ -8,7 +8,7 @@ PW = 'EUxK6p6ciM'
 DB = 'sql6412984'
 
 engine = mysql.connect(host=HOST, database=DB, user=USER, password=PW)
-cur = engine.cursor()
+cur = engine.cursor(buffered=True)
 
 
 @app.route("/")
@@ -16,6 +16,14 @@ def home_view():
     cur.execute("SELECT * FROM test")
     rows = cur.fetchall()
     return jsonify(rows)
+
+
+@app.route("/data")
+def index():
+    cur.execute("select * from test")
+    nm = cur.fetchall()
+    rs = cur.column_names
+    return render_template('data.html', nm=nm, rs=rs)
 
 
 @app.route('/form')
@@ -35,3 +43,6 @@ def login():
         engine.commit()
         cur.close()
         return f"Submitted Successfully"
+
+
+cur.close()

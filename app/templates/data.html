@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/static/style.css"/>
+    <title>Index</title>
+</head>
+<body>
+<table style="border='1'">
+    <tr>
+        {% for rs in rs %}
+        <th>{{rs}}</th>
+        {% endfor %}
+    </tr>
+    {% for nme in nm %}
+    <tr>
+        <td>{{nme[0]}}</td>
+        <td>{{nme[1]}}</td>
+        <td>{{nme[2]}}</td>
+    </tr>
+    {% endfor %}
+
+</table>
+</body>
+</html>

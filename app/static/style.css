@@ -4,3 +4,7 @@ p{
 results{
     font-color: red;
 }
+table, th, td {
+  border: 1px solid black;
+}
+tr:nth-child(even) {background-color: #e5e5e5;}
